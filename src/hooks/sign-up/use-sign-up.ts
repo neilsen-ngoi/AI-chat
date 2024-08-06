@@ -1,5 +1,7 @@
+"use client";
+
 import { useToast } from "@/components/ui/use-toast";
-import { SignUp, useSignUp } from "@clerk/nextjs";
+import { useSignUp } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -21,7 +23,7 @@ export const useSignUpForm = () => {
     mode: "onChange",
   });
 
-  const generateOTP = async (
+  const onGenerateOTP = async (
     email: string,
     password: string,
     onNext: React.Dispatch<React.SetStateAction<number>>
@@ -86,4 +88,10 @@ export const useSignUpForm = () => {
       }
     }
   );
+  return {
+    methods,
+    onHandleSubmit,
+    onGenerateOTP,
+    loading,
+  };
 };
